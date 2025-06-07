@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+        {% for post in posts %}
+            <div class="blog-post"
+                 style="background-color: #1e1e1e; color: #f0f0f0; border: 1px solid #444; border-radius: 8px; padding: 16px; max-width: 600px; margin: 20px auto; font-family: Arial, sans-serif;">
+                <div style="float : right"><img class="rounded-circle article-img" width="50" height="50" src="{{post.author.profile.image.url}}"></div>
+                <div>
+                <h2 style="margin-top: 0; color: #e3c681;"><a href="{% url 'post-detail' post.id %}" style="margin-top: 0; color: #e3c681;" target="_blank">{{post.title}}</a> </h2>
+                <p style="color: #bbb;"><strong>By:</strong> <a href="{% url 'user-posts' post.author.username%}">{{post.author}}</a> | <strong>Date:</strong> {{post.date_posted|date:"F d, Y"}}</p>
+                <p style="color: #ddd;">{{post.content}}</p>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}
